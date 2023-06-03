@@ -1,0 +1,970 @@
+html, body {
+  overflow: hidden;
+  user-select: none;
+  width: 100%;
+  height: 100%;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.container > .inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.view {
+  background: #fff;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 100%;
+  height: 100%;
+}
+.view .menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 5%;
+  left: 0;
+  width: 100%;
+}
+
+
+/**
+Transition
+*/
+.view.over-layer {
+  animation: open-view 750ms linear 300ms;
+  animation-fill-mode: forwards;
+  clip-path: circle(0% at center);
+  display: flex;
+  z-index: 200;
+}
+.view.under-layer {
+  display: flex;
+  z-index: 99;
+}
+.view.under-layer:after {
+  animation: open-view 750ms;
+  animation-fill-mode: forwards;
+  /* background: #ff8a00; */
+  background: #FFB866;
+  clip-path: circle(0% at center);
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 150;
+}
+.loading-view {
+  display: flex;
+  z-index: 1;
+}
+
+@keyframes open-view {
+  0% {
+    clip-path: circle(0% at center);
+  }
+  100% {
+    clip-path: circle(100% at center);
+  }
+}
+
+
+/**
+Button
+*/
+.btn {
+  background: url(../img/btns.png) no-repeat;
+  background-size: 300% 200%;
+  border: none;
+  display: inline-block;
+  padding-top: 35%;
+  width: 35%;
+}
+.btn + .btn {
+  margin-left: 5%;
+}
+.btn-select {
+  background-position: 0 0;
+}
+.btn-howto {
+  background-position: 50% 0;
+}
+.btn-back {
+  background-position: 100% 0;
+}
+.btn-next {
+  background-position: 0 100%;
+}
+.btn-end {
+  background-position: 50% 100%;
+}
+.btn-reload {
+  background-position: 100% 100%;
+}
+
+
+/**
+Mode Button
+*/
+.btn-play-easy, .btn-play-normal, .btn-play-hard {
+  background: url(../img/btn_mode.png) no-repeat;
+  background-size: 100% 300%;
+  border: none;
+  display: inline-block;
+  padding-top: 24.44%;
+  width: 71.66%;
+}
+.btn-play-easy {
+  background-position: 0 0;
+}
+.btn-play-normal {
+  background-position: 0 50%;
+}
+.btn-play-hard {
+  background-position: 0 100%;
+}
+
+
+/**
+Number
+*/
+.numbers [data-number] {
+  background-size: 200% 1000%;
+  background-image: url(../img/numbers.png);
+  background-repeat: no-repeat;
+  position: relative;
+}
+.numbers [data-number]:before {
+  content: '';
+  display: block;
+}
+
+
+/**
+Score Number
+*/
+.score .numbers {
+  filter: drop-shadow(-4px 3px 1px rgba(0, 0, 0, 0.3));
+}
+.score .numbers [data-number="1"] {
+  background-position: 100% 0;
+  background-size: 178.807947% 1209.589041%;
+}
+.score .numbers [data-number="1"]:before {
+  padding-top: 48.34437086%;
+}
+.score .numbers [data-number="2"] {
+  background-position: 100% 9.19395466%;
+  background-size: 178.807947% 992.1348315%;
+}
+.score .numbers [data-number="2"]:before {
+  padding-top: 58.94039735%;
+}
+.score .numbers [data-number="3"] {
+  background-position: 100% 20.42875158%;
+  background-size: 178.807947% 981.1111111%;
+}
+.score .numbers [data-number="3"]:before {
+  padding-top: 59.60264901%;
+}
+.score .numbers [data-number="4"] {
+  background-position: 100% 31.89873418%;
+  background-size: 178.807947% 949.4623656%;
+}
+.score .numbers [data-number="4"]:before {
+  padding-top: 61.58940397%;
+}
+.score .numbers [data-number="5"] {
+  background-position: 100% 43.56060606%;
+  background-size: 178.807947% 970.3296703%;
+}
+.score .numbers [data-number="5"]:before {
+  padding-top: 60.26490066%;
+}
+.score .numbers [data-number="6"] {
+  background-position: 100% 55.12010114%;
+  background-size: 178.807947% 959.7826087%;
+}
+.score .numbers [data-number="6"]:before {
+  padding-top: 60.92715232%;
+}
+.score .numbers [data-number="7"] {
+  background-position: 100% 65.42750929%;
+  background-size: 178.807947% 1161.842105%;
+}
+.score .numbers [data-number="7"]:before {
+  padding-top: 50.33112583%;
+}
+.score .numbers [data-number="8"] {
+  background-position: 100% 76.26262626%;
+  background-size: 178.807947% 970.3296703%;
+}
+.score .numbers [data-number="8"]:before {
+  padding-top: 60.26490066%;
+}
+.score .numbers [data-number="9"] {
+  background-position: 100% 88.19796954%;
+  background-size: 178.807947% 929.4736842%;
+}
+.score .numbers [data-number="9"]:before {
+  padding-top: 62.91390728%;
+}
+.score .numbers [data-number="0"] {
+  background-position: 100% 100%;
+  background-size: 178.807947% 949.4623656%;
+}
+.score .numbers [data-number="0"]:before {
+  padding-top: 61.58940397%;
+}
+
+
+/**
+Combo Number
+*/
+.combo .numbers > * + * {
+  margin-top: -5%;
+}
+.combo .numbers [data-number="1"] {
+  background-position: 0 0;
+  background-size: 226.8907563% 1447.540984%;
+}
+.combo .numbers [data-number="1"]:before {
+  padding-top: 51.2605042%;
+}
+.combo .numbers [data-number="2"] {
+  background-position: 0 7.558859975%;
+  background-size: 226.8907563% 1161.842105%;
+}
+.combo .numbers [data-number="2"]:before {
+  padding-top: 63.86554622%;
+}
+.combo .numbers [data-number="3"] {
+  background-position: 0 16.99751861%;
+  background-size: 226.8907563% 1146.753247%;
+}
+.combo .numbers [data-number="3"]:before {
+  padding-top: 64.70588235%;
+}
+.combo .numbers [data-number="4"] {
+  background-position: 0 26.65006227%;
+  background-size: 226.8907563% 1103.75%;
+}
+.combo .numbers [data-number="4"]:before {
+  padding-top: 67.22689076%;
+}
+.combo .numbers [data-number="5"] {
+  background-position: 0 36.52173913%;
+  background-size: 226.8907563% 1132.051282%;
+}
+.combo .numbers [data-number="5"]:before {
+  padding-top: 65.54621849%;
+}
+.combo .numbers [data-number="6"] {
+  background-position: 0 46.21118012%;
+  background-size: 226.8907563% 1132.051282%;
+}
+.combo .numbers [data-number="6"]:before {
+  padding-top: 65.54621849%;
+}
+.combo .numbers [data-number="7"] {
+  background-position: 0 55.07955936%;
+  background-size: 226.8907563% 1337.878788%;
+}
+.combo .numbers [data-number="7"]:before {
+  padding-top: 55.46218487%;
+}
+.combo .numbers [data-number="8"] {
+  background-position: 0 64.09937888%;
+  background-size: 226.8907563% 1132.051282%;
+}
+.combo .numbers [data-number="8"]:before {
+  padding-top: 65.54621849%;
+}
+.combo .numbers [data-number="9"] {
+  background-position: 0 73.78881988%;
+  background-size: 226.8907563% 1132.051282%;
+}
+.combo .numbers [data-number="9"]:before {
+  padding-top: 65.54621849%;
+}
+.combo .numbers [data-number="0"] {
+  background-position: 0 83.37468983%;
+  background-size: 226.8907563% 1146.753247%;
+}
+.combo .numbers [data-number="0"]:before {
+  padding-top: 64.70588235%;
+}
+
+
+/**
+Combo Effect
+*/
+.combo-effect {
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.combo-effect > * {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  transition: opacity 500ms;
+  width: 100%;
+  height: 100%;
+}
+.combo-effect > *:before,
+.combo-effect > *:after {
+  background-repeat: no-repeat;
+  background-size: 100%;
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  transition: all 500ms;
+  width: 100%;
+  height: 100%;
+}
+.combo-effect > *:before {
+  animation: orchestra-motion 500ms ease-in-out;
+  animation-iteration-count: infinite;
+}
+.combo-effect > *:after {
+  background-position: center;
+  background-size: cover;
+  animation: light-motion 1s linear;
+  animation-iteration-count: infinite;
+  opacity: .2;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  transform-origin: bottom center;
+  width: 120%;
+  height: 130%;
+}
+.combo-effect .level1:before {
+  background-image: url(../img/orchestra_lower.png);
+  top: 21%;
+  z-index: 3;
+}
+.combo-effect .level2:before {
+  animation-delay: 165ms;
+  background-image: url(../img/orchestra_middle.png);
+  top: 7%;
+  z-index: 2;
+}
+.combo-effect .level3:before {
+  animation-delay: 330ms;
+  background-image: url(../img/orchestra_upper.png);
+  z-index: 1;
+}
+.combo-effect .level2:after {
+  animation-direction: alternate;
+  background-image: url(../img/light_under.png);
+  z-index: 2;
+}
+.combo-effect .level3:after {
+  animation-direction: alternate-reverse;
+  background-image: url(../img/light_top.png);
+  z-index: 1;
+}
+.play-view[data-combo-gauge="1"] .combo-effect .level1 {
+  opacity: 1;
+}
+.play-view[data-combo-gauge="2"] .combo-effect .level1,
+.play-view[data-combo-gauge="2"] .combo-effect .level2 {
+  opacity: 1;
+}
+.play-view[data-combo-gauge="3"] .combo-effect .level1,
+.play-view[data-combo-gauge="3"] .combo-effect .level2,
+.play-view[data-combo-gauge="3"] .combo-effect .level3 {
+  opacity: 1;
+}
+
+@keyframes orchestra-motion {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -1%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes light-motion {
+  0% {
+    transform: translate3d(-50%, -50%, 0) rotate(3deg);
+  }
+  100% {
+    transform: translate3d(-50%, -50%, 0) rotate(-3deg);
+  }
+}
+
+
+/**
+Judge Text
+*/
+.judge-text {
+  animation: judge-text-motion 1.5s;
+  animation-fill-mode: forwards;
+  background: url(../img/judge_text.png) center/cover;
+  background-size: 100% 300%;
+}
+.judge-text:before {
+  content: '';
+  display: block;
+  padding-top: 37.24%;
+}
+.judge-text[data-text="perfect"] {
+  background-position: 50% 0;
+}
+.judge-text[data-text="good"] {
+  background-position: 50% 50%;
+}
+.judge-text[data-text="miss"] {
+  background-position: 50% 100%;
+}
+
+@keyframes judge-text-motion {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 100%;
+  }
+  80% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+
+/**
+Judge Effect
+*/
+.judge-effect {
+  animation: judge-effect-motion 1.5s;
+  animation-fill-mode: forwards;
+  background: url(../img/judge_effect.png) center/cover;
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes judge-effect-motion {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  20% {
+    opacity: 100%;
+    transform: translate(-50%, -50%) scale(1.6);
+  }
+  80% {
+    opacity: 100%;
+    transform: translate(-50%, -50%) scale(1.6);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.6);
+  }
+}
+
+
+/**
+Lyrics
+*/
+.lyrics {
+  background: rgba(18, 79, 96, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  position: absolute;
+  top: 19.8%;
+  left: 0;
+  width: 100%;
+  height: 6.14%;
+}
+.lyrics:before,
+.lyrics:after {
+  background: #75d1f8;
+  content: '';
+  display: block;
+  padding-top: 0.92%;
+  width: 100%;
+}
+.lyrics-text {
+  background-position-x: 50%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  /* flex: 1; */
+  padding-top: 8.2875%;
+  position: relative;
+  left: 4%;
+  transition: background-position-y 500ms;
+  width: 85%;
+}
+/* .lyrics:before {
+  background: red;
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 75%;
+  width: 100%;
+  height: 1px;
+} */
+.play-view[data-mode="easy"] .lyrics-text {
+  background-image: url(../img/lyrics_easy.png?v=2022062302);
+}
+.play-view[data-mode="normal"] .lyrics-text {
+  background-image: url(../img/lyrics_normal.png?v=2022062302);
+}
+.play-view[data-mode="hard"] .lyrics-text {
+  background-image: url(../img/lyrics_hard.png?v=2022062302);
+}
+
+
+/**
+Loading View
+*/
+.loading-view {
+  background: rgb(255,242,239);
+  background: -moz-linear-gradient(0deg, rgba(255,242,239,1) 0%, rgba(212,212,212,1) 100%);
+  background: -webkit-linear-gradient(0deg, rgba(255,242,239,1) 0%, rgba(212,212,212,1) 100%);
+  background: linear-gradient(0deg, rgba(255,242,239,1) 0%, rgba(212,212,212,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fff2ef",endColorstr="#d4d4d4",GradientType=1);
+  display: block;
+}
+.loading-view.hide {
+  display: none;
+}
+.loading-view:before {
+  background: url(../img/loading_text.png) center/cover no-repeat;
+  content: '';
+  display: block;
+  opacity: 0;
+  position: relative;
+  transition: opacity 1s;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.loading-view .indicator {
+  animation: 1.5s identifier linear infinite;
+  padding-top: 45%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -73%);
+  width: 45%;
+}
+.loading-view .indicator:before {
+  border-radius: 50%;
+  border: 1.5rem solid #ff8a00;
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.loading-view .indicator:after {
+  background: #ff8a00;
+  border-radius: 50%;
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -25%);
+  width: 3.5rem;
+  height: 3.5rem;
+}
+.loading-view.fade:before {
+  opacity: 1;
+}
+.dialog-reload {
+  background: url(../img/bg_reload.png) center/cover no-repeat;
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 200;
+}
+.dialog-reload.show {
+  display: block;
+}
+.dialog-reload .menu {
+  top: 50%;
+  bottom: auto;
+  transform: translate(0, 40%);
+}
+
+@keyframes identifier {
+  0% {
+    transform: translate(-50%, -73%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -73%) rotate(359.9deg);
+  }
+}
+
+
+/**
+Title View
+*/
+.title-view {
+  background: url(../img/bg_title.png) center/cover;
+}
+
+
+/**
+Howto View
+*/
+.howto-view {
+  background: url(../img/bg_howto.png) center/cover;
+}
+
+
+/**
+Select View
+*/
+.select-view {
+  background: url(../img/bg_select.png) center/cover;
+}
+.select-mode {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 39%;
+  width: 100%;
+}
+.select-mode .btn + .btn {
+  margin-left: 0;
+  margin-top: 5%;
+}
+
+
+/**
+Play View
+*/
+.play-view {
+  background-repeat: no-repeat;
+  background-size: cover;
+  bottom: 0;
+}
+.play-view[data-mode="easy"] {
+  background-image: url(../img/bg_play_easy.png);
+}
+.play-view[data-mode="normal"] {
+  background-image: url(../img/bg_play_normal.png);
+}
+.play-view[data-mode="hard"] {
+  background-image: url(../img/bg_play_hard.png);
+}
+.lanes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  opacity: .5;
+  overflow: hidden;
+  padding: 0px 19%;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: rotateX(45deg) translateX(-50%);
+  transform-origin: center bottom;
+  width: 156%;
+  height: 200%;
+}
+.lanes > * {
+  position: relative;
+  width: 20%;
+  height: 100%;
+}
+.judge-area {
+  display: flex;
+  padding: 0 12%;
+  position: absolute;
+  left: 0;
+  /* bottom: 1.9058732010890704%;
+  height: 2.2559315441462466%; */
+  bottom: 2.905873%;
+  height: 3.355932%;
+  width: 100%;
+}
+.judge-area > * {
+  width: 20%;
+  height: 100%;
+}
+.note {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+}
+.note:before {
+  border-radius: 50%;
+  background: yellow;
+  content: '';
+  display: block;
+  padding-top: 33.33%;
+  position: absolute;
+  transform: translateY(-50%);
+  width: 100%;
+}
+.btn-judge {
+  background: url(../img/btn_judge.png) center/cover;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 4%;
+  position: absolute;
+  bottom: 10.15%;
+  width: 100%;
+}
+.btn-judge > * {
+  padding-top: 17.5%;
+  position: relative;
+  width: 17.5%;
+}
+.btn-judge > * > * {
+  pointer-events: none;
+}
+.btn-judge .judge-text {
+  position: absolute;
+  top: 0;
+  transform: translateY(-70%);
+  width: 100%;
+}
+.btn-judge .judge-keybind {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 700;
+  color: white;
+  opacity: 0.5;
+  font-size: 3rem;
+}
+.judge-area-miss,
+.judge-area-good,
+.judge-area-perfect {
+  display: none;
+  pointer-events: none;
+  opacity: 0.5;
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+.judge-area-miss {
+  background: red;
+}
+.judge-area-good {
+  background: blue;
+}
+.judge-area-perfect {
+  background: green;
+}
+.play-view .score {
+  background: url(../img/score.png) right top no-repeat;
+  background-size: auto 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 10.15%;
+}
+.play-view .score .numbers {
+  position: absolute;
+  top: 45%;
+  right: 3.3%;
+  transform: translateY(-100%) rotateZ(-90deg);
+  transform-origin: right bottom;
+  width: 6%;
+}
+.play-view .combo {
+  background: url(../img/combo.png) center/cover no-repeat;
+  display: none;
+  position: absolute;
+  top: 10%;
+  width: 25.74%;
+  height: 12.44%;
+}
+.play-view .combo.show {
+  display: block;
+}
+.play-view .combo .numbers {
+  position: absolute;
+  top: 31%;
+  left: 14%;
+  transform: rotate(-104deg);
+  transform-origin: left top;
+  width: 38%;
+}
+.combo-gauge {
+  background: url(../img/combo_gauge.png) center/cover;
+  position: absolute;
+  top: 17.03%;
+  left: 3.61%;
+  width: 4.62%;
+  height: 49.74%;
+}
+.gauge-mask {
+  clip-path: polygon(0 0, 0 100%, 100% 93.1%, 100% 0);
+  position: absolute;
+  top: 0.52%;
+  left: 10%;
+  width: 80%;
+  height: 98.95%;
+}
+.gauge {
+  background: rgb(124,0,177);
+  background: -moz-linear-gradient(0deg, rgba(124,0,177,1) 0%, rgba(239,0,254,1) 100%);
+  background: -webkit-linear-gradient(0deg, rgba(124,0,177,1) 0%, rgba(239,0,254,1) 100%);
+  background: linear-gradient(0deg, rgba(124,0,177,1) 0%, rgba(239,0,254,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#7c00b1",endColorstr="#ef00fe",GradientType=1);
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 300ms;
+  height: 100%;
+}
+.end-text {
+  animation: end-text-motion 150ms;
+  animation-fill-mode: forwards;
+  background: url(../img/end_text.png) center/cover no-repeat;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.end-text.show {
+  display: block;
+}
+
+@keyframes end-text-motion {
+  0% {
+    opacity: 0;
+    transform: scale(2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/**
+Play View z-index
+*/
+.play-view .end-text {
+  z-index: 100;
+}
+.play-view .btn-judge {
+  z-index: 99;
+}
+.play-view .score {
+  z-index: 99;
+}
+.play-view .combo-gauge {
+  z-index: 98;
+}
+.play-view .combo {
+  z-index: 97;
+}
+.play-view .lyrics {
+  z-index: 96;
+}
+.play-view .dummy-judge-area {
+  z-index: 95;
+}
+.play-view .lanes {
+  z-index: 94;
+}
+.play-view .combo-effect {
+  z-index: 93;
+}
+
+
+/**
+Result View
+*/
+.result-view {
+  background: url(../img/bg_result.png) center/cover;
+}
+
+
+/**
+Last Result View
+*/
+.last-result-view {
+  background: url(../img/bg_last_result.png) center/cover;
+}
+.result-view .score,
+.last-result-view .score {
+  position: absolute;
+  left: 0;
+  top: 35.7%;
+  width: 100%;
+  height: 10%;
+}
+.result-view .score .numbers,
+.last-result-view .score .numbers {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateZ(-90deg);
+  transform-origin: center;
+  width: 10%;
+}
+.result-view .combo,
+.last-result-view .combo {
+  position: absolute;
+  left: 0;
+  top: 51%;
+  width: 100%;
+  height: 5%;
+}
+.result-view .combo .numbers,
+.last-result-view .combo .numbers {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateZ(-90deg);
+  transform-origin: center;
+  width: 8%;
+}
