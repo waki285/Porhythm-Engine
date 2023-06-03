@@ -396,6 +396,7 @@ class SelectView extends View {
       case 'normal': { this.btnPlayNormalEl.style.display = 'none'; break; }
       case 'hard': { this.btnPlayHardEl.style.display = 'none'; break; }
     }
+
   }
 }
 class PlayView extends View {
@@ -429,6 +430,7 @@ class PlayView extends View {
   show () {
     this.reset();
     super.show();
+    document.querySelectorAll("button").forEach(x => x.blur());
   }
   reset () {
     for (let i = 1; i <= 5; i++) document.querySelectorAll(`.lane${i}`).forEach((el) => el.innerHTML = '');
