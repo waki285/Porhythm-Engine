@@ -710,6 +710,7 @@ class JudgeBtn {
   }
   effect(text) {
     let html = "";
+    this.keybinds = getKeybinds();
     if (text != "miss") html += '<div class="judge-effect"></div>';
     html += `<div class="judge-text" data-text="${text}"></div>`;
     this.el.innerHTML = `${generateKeybindText(
