@@ -2,6 +2,6 @@
 *.md
 *.json
 .vscode/
-img/
+public/img/
 node_modules/
-sound/
+public/sound/
