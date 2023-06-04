@@ -34,9 +34,16 @@ if (!localStorage.getItem("keybinds")) {
 }
 
 function generateKeybindText(key) {
-  return `<span class="judge-keybind">${key
+  return `<span class="judge-keybind">${visualizeKeyText(key)}</span>`;
+}
+function visualizeKeyText(key) {
+  return key
     .replace("Key", "")
-    .replace("Arrow", "")}</span>`;
+    .replace("Arrow", "")
+    .replace("Left", "←")
+    .replace("Down", "↓")
+    .replace("Up", "↑")
+    .replace("Right", "→");
 }
 function getKeybinds() {
   return localStorage.getItem("keybinds").split(",");
@@ -459,9 +466,33 @@ class SettingsView extends View {
 class ChangeKeybindsView extends SubView {
   constructor() {
     super(".change-keybinds-view");
-    document
-      .querySelectorAll(".change-keybinds-keybinds > div")
-      .forEach((el, index) => {});
+    this.rebindEl = document.querySelector(".change-menu");
+    this.rebinding = false;
+    this.buttons = document.querySelectorAll(".change-keybinds-keybinds > div");
+    this.buttons.forEach((el, index) => {
+      el.addEventListener("click", (e) => {
+        if (this.rebinding) return;
+        this.rebinding = true;
+        this.rebindEl.classList.add("inline-block");
+        const keyDownEvent = (e) => {
+          const oldKeybinds = getKeybinds();
+          oldKeybinds[index] = e.code;
+          localStorage.setItem("keybinds", oldKeybinds);
+          document.removeEventListener("keydown", keyDownEvent);
+          this.refresh();
+          this.rebindEl.classList.remove("inline-block");
+          this.rebinding = false;
+        }
+        document.addEventListener("keydown", keyDownEvent);
+      });
+    });
+    this.refresh();
+  }
+  refresh() {
+    const keybinds = getKeybinds();
+    this.buttons.forEach((el, index) => {
+      el.children.item(0).innerText = visualizeKeyText(keybinds[index]);
+    });
   }
 }
 

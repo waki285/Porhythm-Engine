@@ -723,6 +723,21 @@ Howto View
 .change-keybinds-view {
   background-color: rgba(0, 0, 0, 0.3);
 }
+.change-menu {
+  display: none;
+  width: 100%;
+  height: 6rem;
+  text-align: center;
+  position: fixed;
+  z-index: 400;
+  border: 5px solid black;
+  background: green;
+  top: 50%;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-family: 700;
+  font-size: 3rem;
+  transform: translateY(-50%);
+}
 .change-keybinds-inner {
   display: grid;
   place-items: center;
@@ -744,6 +759,7 @@ Howto View
 .change-keybinds-keybinds > * {
   position: relative;
   width: 17.5%;
+  cursor: pointer;
 }
 .change-keybinds-keybinds > * > * {
   pointer-events: none;
@@ -1096,4 +1112,7 @@ Last Result View
 
 .flex-unset {
   flex: unset;
+}
+.inline-block {
+  display: inline-block;
 }
