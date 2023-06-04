@@ -382,8 +382,15 @@ class ViewController {
       }
     }
   }
+  touchEffect(el) {
+    el.animate([
+      { opacity: 0.8 },
+      { opacity: 0 }
+    ], { pseudoElement: "::after", duration: 100, easing: "ease-out" });
+  }
   judgeEvent(number) {
     let event = new CustomEvent(`judge${number}`);
+    this.touchEffect(document.querySelectorAll(".btn-judge > div").item(number - 1));
     document
       .querySelectorAll(`.lane${number} .note`)
       .forEach((el) => el.dispatchEvent(event));
@@ -595,11 +602,7 @@ class PlayView extends View {
     this.reloadDialogEl.classList.add("show");
   }
   updateScore(score) {
-    let html = (score + "")
-      .split("")
-      .map((value) => `<div data-number="${value}"></div>`)
-      .join("");
-    this.scoreNumbersEl.innerHTML = html;
+    this.scoreNumbersEl.innerHTML = score;
   }
   updateCombo(combo) {
     if (combo < COMBO_DISPLAY_COUNT) {
@@ -641,11 +644,7 @@ class ResultView extends View {
     });
   }
   updateScore(value) {
-    let html = (value + "")
-      .split("")
-      .map((value) => `<div data-number="${value}"></div>`)
-      .join("");
-    this.scoreEl.innerHTML = html;
+    this.scoreEl.innerHTML = value;
   }
   updateMaxCombo(value) {
     let html = (value + "")
@@ -705,8 +704,8 @@ class JudgeBtn {
       let { index, judge } = e.detail;
       if (index == this.index) this.effect(judge);
     });
-    this.el.addEventListener("mousedown", () => this.onClick());
-    this.el.addEventListener("touchstart", () => this.onClick());
+    this.el.addEventListener("mousedown", (e) => this.onClick(e));
+    this.el.addEventListener("touchstart", (e) => this.onClick(e));
   }
   effect(text) {
     let html = "";
@@ -717,7 +716,16 @@ class JudgeBtn {
       this.keybinds[this.index]
     )}${html}`;
   }
-  onClick() {
+  touchEffect() {
+    this.el.animate([
+      { opacity: 0.8 },
+      { opacity: 0 }
+    ], { pseudoElement: "::after", duration: 100, easing: "ease-out" });
+  }
+  onClick(e) {
+    e.preventDefault();
+    if (e.repeat) return;
+    this.touchEffect();
     let event = new CustomEvent(`judge${this.index + 1}`);
     document
       .querySelectorAll(`.lane${this.index + 1} .note`)
@@ -894,12 +902,34 @@ class RecordData {
     this._score = value;
     this.fireEvent("score", value);
   }
+  get misses() {
+    return this._misses || 0;
+  }
+  set misses(value) {
+    this._misses = value;
+    this.fireEvent("misses", value);
+  }
+  get isAP() {
+    return this._isAP || false;
+  }
+  get isFC() {
+    return this.misses === 0 && this.totalNotes;
+  }
   get combo() {
     return this._combo || 0;
   }
   set combo(value) {
     this._combo = value;
     this.fireEvent("combo", value);
+  }
+  get totalNotes() {
+    return this._totalNotes || 0;
+  }
+  set totalNotes(value) {
+    this._totalNotes = value;
+  }
+  get accuracy() {
+    return Math.round((this.score / (this.totalNotes * SCORE.PERFECT)) * 10000) / 100
   }
   get maxCombo() {
     return this._maxCombo || 0;
@@ -922,17 +952,24 @@ class RecordData {
       case "perfect":
         this.score += SCORE.PERFECT;
         this.combo += 1;
+        if (!this.totalNotes) this._isAP = true;
+        this.totalNotes++;
         this.comboGauge = Math.min(this.comboGauge + COMBO_GAUGE.PERFECT, 100);
         this.maxCombo = Math.max(this.combo, this.maxCombo);
         break;
       case "good":
         this.score += SCORE.GOOD;
         this.combo += 1;
+        this._isAP = false;
+        this.totalNotes++;
         this.comboGauge = Math.min(this.comboGauge + COMBO_GAUGE.GOOD, 100);
         this.maxCombo = Math.max(this.combo, this.maxCombo);
         break;
       case "miss":
         this.score += SCORE.MISS;
+        this.totalNotes++;
+        this._isAP = false;
+        this.misses += 1;
         this.combo = 0;
         this.comboGauge = Math.max(this.comboGauge + COMBO_GAUGE.MISS, 0);
         break;
@@ -943,6 +980,9 @@ class RecordData {
     this.score = 0;
     this.combo = 0;
     this.maxCombo = 0;
+    this.totalNotes = 0;
+    this.misses = 0;
+    this._isAP = false;
     this.comboGauge = 0;
   }
   // 各種数値が更新された時にイベントを発火

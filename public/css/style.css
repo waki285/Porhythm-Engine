@@ -198,15 +198,11 @@ Mode Button
 /**
 Number
 */
-.numbers [data-number] {
-  background-size: 200% 1000%;
-  background-image: url(../img/numbers.png);
-  background-repeat: no-repeat;
-  position: relative;
-}
-.numbers [data-number]:before {
-  content: "";
-  display: block;
+
+.numbers {
+  font-family: Oswald, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 /**
@@ -214,78 +210,9 @@ Score Number
 */
 .score .numbers {
   filter: drop-shadow(-4px 3px 1px rgba(0, 0, 0, 0.3));
+  font-size: 2rem;
+  color: white;
 }
-.score .numbers [data-number="1"] {
-  background-position: 100% 0;
-  background-size: 178.807947% 1209.589041%;
-}
-.score .numbers [data-number="1"]:before {
-  padding-top: 48.34437086%;
-}
-.score .numbers [data-number="2"] {
-  background-position: 100% 9.19395466%;
-  background-size: 178.807947% 992.1348315%;
-}
-.score .numbers [data-number="2"]:before {
-  padding-top: 58.94039735%;
-}
-.score .numbers [data-number="3"] {
-  background-position: 100% 20.42875158%;
-  background-size: 178.807947% 981.1111111%;
-}
-.score .numbers [data-number="3"]:before {
-  padding-top: 59.60264901%;
-}
-.score .numbers [data-number="4"] {
-  background-position: 100% 31.89873418%;
-  background-size: 178.807947% 949.4623656%;
-}
-.score .numbers [data-number="4"]:before {
-  padding-top: 61.58940397%;
-}
-.score .numbers [data-number="5"] {
-  background-position: 100% 43.56060606%;
-  background-size: 178.807947% 970.3296703%;
-}
-.score .numbers [data-number="5"]:before {
-  padding-top: 60.26490066%;
-}
-.score .numbers [data-number="6"] {
-  background-position: 100% 55.12010114%;
-  background-size: 178.807947% 959.7826087%;
-}
-.score .numbers [data-number="6"]:before {
-  padding-top: 60.92715232%;
-}
-.score .numbers [data-number="7"] {
-  background-position: 100% 65.42750929%;
-  background-size: 178.807947% 1161.842105%;
-}
-.score .numbers [data-number="7"]:before {
-  padding-top: 50.33112583%;
-}
-.score .numbers [data-number="8"] {
-  background-position: 100% 76.26262626%;
-  background-size: 178.807947% 970.3296703%;
-}
-.score .numbers [data-number="8"]:before {
-  padding-top: 60.26490066%;
-}
-.score .numbers [data-number="9"] {
-  background-position: 100% 88.19796954%;
-  background-size: 178.807947% 929.4736842%;
-}
-.score .numbers [data-number="9"]:before {
-  padding-top: 62.91390728%;
-}
-.score .numbers [data-number="0"] {
-  background-position: 100% 100%;
-  background-size: 178.807947% 949.4623656%;
-}
-.score .numbers [data-number="0"]:before {
-  padding-top: 61.58940397%;
-}
-
 /**
 Combo Number
 */
@@ -892,6 +819,16 @@ Play View
   position: relative;
   width: 17.5%;
 }
+.btn-judge > *::after {
+  background: white;
+  position: absolute;
+  content: "";
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  opacity: 0;
+}
 .btn-judge > * > * {
   pointer-events: none;
 }
@@ -942,11 +879,8 @@ Play View
 }
 .play-view .score .numbers {
   position: absolute;
-  top: 45%;
+  top: 35%;
   right: 3.3%;
-  transform: translateY(-100%) rotateZ(-90deg);
-  transform-origin: right bottom;
-  width: 6%;
 }
 .play-view .combo {
   background: url(../img/combo.png) center/cover no-repeat;
@@ -1083,14 +1017,15 @@ Last Result View
   width: 100%;
   height: 10%;
 }
-.result-view .score .numbers,
+.result-view .score .numbers {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
 .last-result-view .score .numbers {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) rotateZ(-90deg);
-  transform-origin: center;
-  width: 10%;
 }
 .result-view .combo,
 .last-result-view .combo {
