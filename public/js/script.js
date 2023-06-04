@@ -1,8 +1,8 @@
 // 各判定の範囲（ボタンの直径の何割か）
 const JUDGE = {
-  PERFECT: 0.4,
-  GOOD: 0.8,
-  MISS: 1.2,
+  PERFECT: 0.8,
+  GOOD: 1.2,
+  MISS: 1.6,
 };
 const COMPLEX_JUDGE = {
   PERFECT: 45,
