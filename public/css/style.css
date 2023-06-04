@@ -5,6 +5,15 @@ body {
   width: 100%;
   height: 100%;
 }
+
+.fps {
+  position: absolute;
+  top: 0;
+  left: 0.25rem;
+  font-size: 0.75rem;
+  z-index: 999;
+}
+
 .container {
   display: flex;
   align-items: center;
@@ -213,82 +222,7 @@ Score Number
   font-size: 2rem;
   color: white;
 }
-/**
-Combo Number
-*/
-.combo .numbers > * + * {
-  margin-top: -5%;
-}
-.combo .numbers [data-number="1"] {
-  background-position: 0 0;
-  background-size: 226.8907563% 1447.540984%;
-}
-.combo .numbers [data-number="1"]:before {
-  padding-top: 51.2605042%;
-}
-.combo .numbers [data-number="2"] {
-  background-position: 0 7.558859975%;
-  background-size: 226.8907563% 1161.842105%;
-}
-.combo .numbers [data-number="2"]:before {
-  padding-top: 63.86554622%;
-}
-.combo .numbers [data-number="3"] {
-  background-position: 0 16.99751861%;
-  background-size: 226.8907563% 1146.753247%;
-}
-.combo .numbers [data-number="3"]:before {
-  padding-top: 64.70588235%;
-}
-.combo .numbers [data-number="4"] {
-  background-position: 0 26.65006227%;
-  background-size: 226.8907563% 1103.75%;
-}
-.combo .numbers [data-number="4"]:before {
-  padding-top: 67.22689076%;
-}
-.combo .numbers [data-number="5"] {
-  background-position: 0 36.52173913%;
-  background-size: 226.8907563% 1132.051282%;
-}
-.combo .numbers [data-number="5"]:before {
-  padding-top: 65.54621849%;
-}
-.combo .numbers [data-number="6"] {
-  background-position: 0 46.21118012%;
-  background-size: 226.8907563% 1132.051282%;
-}
-.combo .numbers [data-number="6"]:before {
-  padding-top: 65.54621849%;
-}
-.combo .numbers [data-number="7"] {
-  background-position: 0 55.07955936%;
-  background-size: 226.8907563% 1337.878788%;
-}
-.combo .numbers [data-number="7"]:before {
-  padding-top: 55.46218487%;
-}
-.combo .numbers [data-number="8"] {
-  background-position: 0 64.09937888%;
-  background-size: 226.8907563% 1132.051282%;
-}
-.combo .numbers [data-number="8"]:before {
-  padding-top: 65.54621849%;
-}
-.combo .numbers [data-number="9"] {
-  background-position: 0 73.78881988%;
-  background-size: 226.8907563% 1132.051282%;
-}
-.combo .numbers [data-number="9"]:before {
-  padding-top: 65.54621849%;
-}
-.combo .numbers [data-number="0"] {
-  background-position: 0 83.37468983%;
-  background-size: 226.8907563% 1146.753247%;
-}
-.combo .numbers [data-number="0"]:before {
-  padding-top: 64.70588235%;
-}
+
 
 /**
 Combo Effect
@@ -895,11 +829,15 @@ Play View
 }
 .play-view .combo .numbers {
   position: absolute;
-  top: 31%;
-  left: 14%;
-  transform: rotate(-104deg);
+  top:-20%;
+  left: 0%;
+  transform: rotate(344deg);
   transform-origin: left top;
-  width: 38%;
+  font-size: 2.5rem;
+  color: rgb(255 0 180);
+  -webkit-text-stroke: white 2px;
+  text-stroke: white 2px;
+
 }
 .combo-gauge {
   background: url(../img/combo_gauge.png) center/cover;
@@ -1019,13 +957,13 @@ Last Result View
 }
 .result-view .score .numbers {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 30%;
+  left: 40%;
 }
 .last-result-view .score .numbers {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 30%;
+  left: 40%;
 }
 .result-view .combo,
 .last-result-view .combo {
@@ -1038,11 +976,10 @@ Last Result View
 .result-view .combo .numbers,
 .last-result-view .combo .numbers {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotateZ(-90deg);
-  transform-origin: center;
-  width: 8%;
+  top: 30%;
+  left: 45%;
+  font-size: 2rem;
+  color: white;
 }
 
 .flex-unset {

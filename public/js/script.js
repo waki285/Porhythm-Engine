@@ -4,6 +4,11 @@ const JUDGE = {
   GOOD: 0.8,
   MISS: 1.2,
 };
+const COMPLEX_JUDGE = {
+  PERFECT: 45,
+  GOOD: 90,
+  MISS: 135,
+}
 // 加算スコア
 const SCORE = {
   PERFECT: 500,
@@ -18,9 +23,9 @@ const COMBO_GAUGE = {
 };
 // スピード（数値が小さいほど早くなる）
 const SPEED_RATE = {
-  EASY: 8,
-  NORMAL: 6,
-  HARD: 5,
+  EASY: 6,
+  NORMAL: 4,
+  HARD: 3,
 };
 // 1小節の拍数
 const BEAT_PER_BAR = 16;
@@ -141,7 +146,6 @@ class GameController {
   }
   render(timestamp) {
     const now = (timestamp || 0) * 0.001; // 秒に変換
-
     if (this.currentTime == 0) {
       this.currentTime = now;
     } else if (timestamp) {
@@ -608,11 +612,7 @@ class PlayView extends View {
     if (combo < COMBO_DISPLAY_COUNT) {
       this.comboEl.classList.remove("show");
     } else {
-      let html = (combo + "")
-        .split("")
-        .map((value) => `<div data-number="${value}"></div>`)
-        .join("");
-      this.comboNumbersEl.innerHTML = html;
+      this.comboNumbersEl.innerHTML = combo;
       this.comboEl.classList.add("show");
     }
   }
@@ -647,11 +647,7 @@ class ResultView extends View {
     this.scoreEl.innerHTML = value;
   }
   updateMaxCombo(value) {
-    let html = (value + "")
-      .split("")
-      .map((value) => `<div data-number="${value}"></div>`)
-      .join("");
-    this.comboEl.innerHTML = html;
+    this.comboEl.innerHTML = value;
   }
 }
 class LastResultView extends ResultView {
