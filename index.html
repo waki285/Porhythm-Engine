@@ -1,126 +1,166 @@
-
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>ポリズム - ピーポくんタウン</title>
-  <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap" rel="stylesheet">
-</head>
-<body oncontextmenu="return false;">
-  <div class="container">
-    <div class="inner" style="display: none">
-      <div class="loading-view view">
-        <div class="indicator"></div>
-        <div class="dialog-reload">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>ポリズム - ピーポくんタウン</title>
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body oncontextmenu="return false;">
+    <div class="container">
+      <div class="inner" style="display: none">
+        <div class="loading-view view">
+          <div class="indicator"></div>
+          <div class="dialog-reload">
+            <div class="menu">
+              <button type="button" class="btn btn-reload"></button>
+            </div>
+          </div>
+        </div>
+        <div class="title-view view">
           <div class="menu">
-            <button type="button" class="btn btn-reload"></button>
+            <button type="button" class="newbtn btn-select">はじめる</button>
+            <button type="button" class="newbtn btn-howto">遊び方</button>
+            <button type="button" class="newbtn btn-settings">設定</button>
           </div>
         </div>
-      </div>
-      <div class="title-view view">
-        <div class="menu">
-          <button type="button" class="btn btn-select"></button>
-          <button type="button" class="btn btn-howto"></button>
-        </div>
-      </div>
-      <div class="howto-view view">
-        <div class="menu">
-          <button type="button" class="btn btn-back"></button>
-        </div>
-      </div>
-      <div class="select-view view">
-        <div class="select-mode">
-          <button type="button" class="btn btn-play-easy"></button>
-          <button type="button" class="btn btn-play-normal"></button>
-          <button type="button" class="btn btn-play-hard"></button>
-        </div>
-      </div>
-      <div class="play-view view" data-combo-gauge="0">
-        <div class="combo-effect">
-          <div class="level3"></div>
-          <div class="level2"></div>
-          <div class="level1"></div>
-        </div>
-        <div class="lyrics">
-          <div class="lyrics-text"></div>
-        </div>
-        <div class="score">
-          <div class="numbers">
-            <div data-number="0"></div>
-          </div>
-        </div>
-        <div class="combo">
-          <div class="numbers">
-            <div data-number="0"></div>
-          </div>
-        </div>
-        <div class="combo-gauge">
-          <div class="gauge-mask">
-            <div class="gauge"></div>
-          </div>
-        </div>
-        <div class="lanes">
-          <div class="lane1"></div>
-          <div class="lane2"></div>
-          <div class="lane3"></div>
-          <div class="lane4"></div>
-          <div class="lane5"></div>
-          <div class="judge-area">
-            <div class="judge1"></div>
-            <div class="judge2"></div>
-            <div class="judge3"></div>
-            <div class="judge4"></div>
-            <div class="judge5"></div>
-          </div>
-          <div class="judge-area-miss"></div>
-          <div class="judge-area-good"></div>
-          <div class="judge-area-perfect"></div>
-        </div>
-        <div class="btn-judge">
-          <div><span class="judge-keybind">A</span></div>
-          <div><span class="judge-keybind">S</span></div>
-          <div><span class="judge-keybind">D</span></div>
-          <div><span class="judge-keybind">F</span></div>
-          <div><span class="judge-keybind">G</span></div>
-        </div>
-        <div class="end-text"></div>
-        <div class="dialog-reload">
+        <div class="howto-view view">
           <div class="menu">
-            <button type="button" class="btn btn-reload"></button>
+            <button type="button" class="btn btn-back"></button>
           </div>
         </div>
-      </div>
-      <div class="result-view view">
-        <div class="score">
-          <div class="numbers"></div>
+        <div class="settings-view view">
+          <div class="settings">
+            <button
+              class="newbtn flex-0"
+              id="change-keybinds"
+              style="background-color: rgb(230 133 17 / 86%)"
+            >
+              キーバインドを変更
+            </button>
+          </div>
+          <div class="menu">
+            <button type="button" class="btn btn-back"></button>
+          </div>
         </div>
-        <div class="combo">
-          <div class="numbers"></div>
+        <div class="change-keybinds-view subview">
+          <div class="change-keybinds-inner">
+            <div class="change-keybinds-keybinds">
+              <div><span class="judge-keybind">A</span></div>
+              <div><span class="judge-keybind">S</span></div>
+              <div><span class="judge-keybind">D</span></div>
+              <div><span class="judge-keybind">F</span></div>
+              <div><span class="judge-keybind">G</span></div>
+            </div>
+          </div>
+          <div class="menu">
+            <button
+              type="button"
+              class="newbtn btn-close flex-unset"
+              style="width: 175px"
+            >
+              閉じる
+            </button>
+          </div>
         </div>
-        <div class="menu">
-          <button type="button" class="btn btn-end"></button>
-          <button type="button" class="btn btn-next"></button>
+        <div class="select-view view">
+          <div class="select-mode">
+            <button type="button" class="btn btn-play-easy"></button>
+            <button type="button" class="btn btn-play-normal"></button>
+            <button type="button" class="btn btn-play-hard"></button>
+          </div>
         </div>
-      </div>
-      <div class="last-result-view view">
-        <div class="score">
-          <div class="numbers"></div>
+        <div class="play-view view" data-combo-gauge="0">
+          <div class="combo-effect">
+            <div class="level3"></div>
+            <div class="level2"></div>
+            <div class="level1"></div>
+          </div>
+          <div class="lyrics">
+            <div class="lyrics-text"></div>
+          </div>
+          <div class="score">
+            <div class="numbers">
+              <div data-number="0"></div>
+            </div>
+          </div>
+          <div class="combo">
+            <div class="numbers">
+              <div data-number="0"></div>
+            </div>
+          </div>
+          <div class="combo-gauge">
+            <div class="gauge-mask">
+              <div class="gauge"></div>
+            </div>
+          </div>
+          <div class="lanes">
+            <div class="lane1"></div>
+            <div class="lane2"></div>
+            <div class="lane3"></div>
+            <div class="lane4"></div>
+            <div class="lane5"></div>
+            <div class="judge-area">
+              <div class="judge1"></div>
+              <div class="judge2"></div>
+              <div class="judge3"></div>
+              <div class="judge4"></div>
+              <div class="judge5"></div>
+            </div>
+            <div class="judge-area-miss"></div>
+            <div class="judge-area-good"></div>
+            <div class="judge-area-perfect"></div>
+          </div>
+          <div class="btn-judge">
+            <div><span class="judge-keybind">A</span></div>
+            <div><span class="judge-keybind">S</span></div>
+            <div><span class="judge-keybind">D</span></div>
+            <div><span class="judge-keybind">F</span></div>
+            <div><span class="judge-keybind">G</span></div>
+          </div>
+          <div class="end-text"></div>
+          <div class="dialog-reload">
+            <div class="menu">
+              <button type="button" class="btn btn-reload"></button>
+            </div>
+          </div>
         </div>
-        <div class="combo">
-          <div class="numbers"></div>
+        <div class="result-view view">
+          <div class="score">
+            <div class="numbers"></div>
+          </div>
+          <div class="combo">
+            <div class="numbers"></div>
+          </div>
+          <div class="menu">
+            <button type="button" class="btn btn-end"></button>
+            <button type="button" class="btn btn-next"></button>
+          </div>
         </div>
-        <div class="menu">
-          <button type="button" class="btn btn-back"></button>
+        <div class="last-result-view view">
+          <div class="score">
+            <div class="numbers"></div>
+          </div>
+          <div class="combo">
+            <div class="numbers"></div>
+          </div>
+          <div class="menu">
+            <button type="button" class="btn btn-back"></button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <script src="js/script.js"></script>
-</body>
+    <script src="js/script.js"></script>
+  </body>
 </html>

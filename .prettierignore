@@ -1,0 +1,7 @@
+.prettierrc
+*.md
+*.json
+.vscode/
+img/
+node_modules/
+sound/
