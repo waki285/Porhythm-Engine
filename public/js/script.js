@@ -44,6 +44,24 @@ function generateKeybindText(key) {
 function visualizeKeyText(key) {
   return key
     .replace("Key", "")
+    .replace("Digit", "")
+    .replace("ShiftLeft", "Shift")
+    .replace("ShiftRight", "RShift")
+    .replace("AltLeft", "Alt")
+    .replace("AltRight", "RAlt")
+    .replace("ControlLeft", "Ctrl")
+    .replace("ControlRight", "RCtrl")
+    .replace("Escape", "Esc")
+    .replace("Insert", "Ins")
+    .replace("Slash", "/")
+    .replace("Period", ".")
+    .replace("Comma", ",")
+    .replace("Minus", "-")
+    .replace("NonConvert", "NCV")
+    .replace("Convert", "CV")
+    .replace("Numpad", "")
+    .replace("IntlYen", "¥")
+    .replace("IntlRo", "_")
     .replace("Arrow", "")
     .replace("Left", "←")
     .replace("Down", "↓")
@@ -347,6 +365,7 @@ class ViewController {
     });
 
     document.addEventListener("keydown", (e) => {
+      if (e.repeat) return;
       const keybinds = getKeybinds();
       switch (e.code) {
         case keybinds[0]: {
@@ -720,7 +739,6 @@ class JudgeBtn {
   }
   onClick(e) {
     e.preventDefault();
-    if (e.repeat) return;
     this.touchEffect();
     let event = new CustomEvent(`judge${this.index + 1}`);
     document
