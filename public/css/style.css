@@ -988,3 +988,8 @@ Last Result View
 .inline-block {
   display: inline-block;
 }
+
+.strums {
+  width: 100%;
+  perspective: 232.994px;
+}
