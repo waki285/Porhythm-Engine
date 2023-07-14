@@ -76,7 +76,8 @@ var EASY_NOTES = {};
 var NORMAL_NOTES = {};
 var HARD_NOTES = {};
 
-var gameController;
+// eslint-disable-next-line no-unused-vars
+let gameController;
 
 class GameController {
   constructor() {
@@ -186,8 +187,7 @@ class GameController {
       this.playTime += e.detail.delta;
     }
 
-    if (!this.notesDataList.lyrics[0]) {
-    } else if (this.notesDataList.lyrics[0] <= this.playTime) {
+    if (this.notesDataList.lyrics[0] && this.notesDataList.lyrics[0] <= this.playTime) {
       this.notesDataList.lyrics.shift();
       this.lyrics.next();
     }
@@ -500,7 +500,7 @@ class ChangeKeybindsView extends SubView {
     this.rebinding = false;
     this.buttons = document.querySelectorAll(".change-keybinds-keybinds > div");
     this.buttons.forEach((el, index) => {
-      el.addEventListener("click", (e) => {
+      el.addEventListener("click", () => {
         if (this.rebinding) return;
         this.rebinding = true;
         this.rebindEl.classList.add("inline-block");
